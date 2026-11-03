@@ -45,7 +45,7 @@ A more focused investigation of the month-to-month movement, including:
 
 ![Power BI May versus June operational diagnostic dashboard](assets/may-june-diagnostic.png)
 
-**Power BI file:** `Lakeview_HVAC_Diagnostic.pbix` (place it in the `dashboard/` directory when publishing).
+**Power BI file:** [Lakeview_HVAC_Diagnostic.pbix](dashboard/Lakeview_HVAC_Diagnostic.pbix)
 
 ## Analytical approach
 
@@ -93,7 +93,7 @@ The audit includes negative test cases that deliberately introduce a duplicate i
 **Power BI / DAX:** KPI measures, branch slicers, trend analysis, service-level comparisons  
 **Operations analytics:** metric definition, root-cause investigation, business recommendations, and reporting controls
 
-## Suggested repository structure
+## Repository structure
 
 ```text
 hvac-operations-diagnostic/
@@ -119,27 +119,33 @@ hvac-operations-diagnostic/
     └── may-june-diagnostic.png
 ```
 
-The structure above is a **recommended publishing layout**, not a claim that every file is already present. Keep generated `.pyc` files out of version control.
+The two dashboard screenshots must be added to `assets/` before publishing. Generated `.pyc` files and local Python environments are excluded using `.gitignore`.
 
 ## Run locally
 
-**Requirements:** Python 3, `pandas`, `openpyxl`, the synthetic Excel workbook, and `completed_job_fact.sql`. Save the workbook and SQL file in the `backend/data/` and `backend/sql/` folders shown above.
+**Requirements:** Python 3, `pandas`, `openpyxl`, the synthetic Excel workbook, and `completed_job_fact.sql`. The workbook, SQL file, and dependency manifest are included in the repository.
 
 ```bash
-python -m pip install pandas openpyxl
+python -m pip install -r requirements.txt
 python backend/audit_hvac_data.py
 python backend/monthly_summary.py
 ```
 
 The first script audits the source data and exports `outputs/completed_job_fact.csv`. The second exports monthly summaries, reconciliation results, and service-mix findings. Open the `.pbix` file in Power BI Desktop; if necessary, update its data-source path to the local CSV before refreshing.
 
-**Reproducibility note:** The scripts currently assume this specific workbook schema, April–June 2026 comparison months, and fixed reconciliation totals. To generalize the pipeline, these assumptions should be parameterized.
+**Reproducibility note:** The scripts currently assume this specific workbook schema, April–June 2026 comparison months, and fixed reconciliation totals. To generalize the pipeline, these assumptions should be parameterized. The SQL extraction file was reconstructed from the available source schema and validated against the original reconciliation checks; its modeled labor assumptions should be reviewed against the original report before interpreting contribution figures as exact matches.
 
 ## Limitations and next steps
 
 - The case study uses **synthetic data** over a short time window; insights should not be generalized to the real HVAC market.
 - Contribution is a modeled **direct-cost proxy**, not operating or net profit.
 - Marketing spend is audited as source data, but campaign attribution and ROI analysis have **not** been implemented.
+- Future additions could include a dedicated **labor-efficiency and callback-quality** report page, a tracked repair-to-install funnel, and automated regression tests for the data pipeline.
+
+---
+
+**Project focus:** Translating validated operational data into clear business diagnostics and actionable decisions.
+
 - Future additions could include a dedicated **labor-efficiency and callback-quality** report page, a tracked repair-to-install funnel, and automated regression tests for the data pipeline.
 
 ---
