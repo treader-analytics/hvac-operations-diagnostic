@@ -1,0 +1,4 @@
+month,net_billed_revenue,completed_jobs,job_count,net_billed,job_count_match,revenue_match
+2026-04,234434,128,128,234434,True,True
+2026-05,265952,149,149,265952,True,True
+2026-06,206150,177,177,206150,True,True
