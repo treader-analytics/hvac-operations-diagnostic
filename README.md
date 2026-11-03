@@ -147,7 +147,3 @@ The first script audits the source data and exports `outputs/completed_job_fact.
 **Project focus:** Translating validated operational data into clear business diagnostics and actionable decisions.
 
 - Future additions could include a dedicated **labor-efficiency and callback-quality** report page, a tracked repair-to-install funnel, and automated regression tests for the data pipeline.
-
----
-
-**Project focus:** Translating validated operational data into clear business diagnostics and actionable decisions.
